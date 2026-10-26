@@ -41,7 +41,7 @@ function App() {
   const [painel, setPainel] = useState(0);
   const [modal, setModal] = useState(false);
 
-  const alfa = (s: Sup) => (s.idx === -1 ? Number(s.custom.replace(",", ".")) || 0 : MATERIAIS[s.idx].alfa);
+  const alfa = (s: Sup) => (s.idx === -1 ? Number(s.custom.replace(",", ".")) || 0 : (MATERIAIS[s.idx]?.alfa ?? 0));
   const num = (s: string) => Number(s.replace(",", ".")) || 0;
 
   const base = {
@@ -235,7 +235,7 @@ function ClasseEscala({ indice }: { indice: number }) {
     <div className="mt-4 flex gap-1">
       {all.map((k, i) => (
         <div key={k} className={`flex-1 rounded px-2 py-1.5 text-center text-xs ${k === c ? `${corClasse(k)} font-bold text-primary-foreground` : "bg-muted text-muted-foreground"}`}>
-          {k} {i < 4 ? `≤ ${f(CLASSES[i].max, 3)}` : "> 0,100"}
+          {k} {i < 4 ? `≤ ${f(CLASSES[i]!.max, 3)}` : "> 0,100"}
         </div>
       ))}
     </div>
